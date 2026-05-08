@@ -1,6 +1,6 @@
-# ActiveCampaign integration demo
+# ACDemoIntegration
 
-Small workspace for experimenting with the [ActiveCampaign](https://www.activecampaign.com/) API and related integrations.
+ActiveCampaign integration demo — small workspace for experimenting with the [ActiveCampaign](https://www.activecampaign.com/) API and related integrations.
 
 ## Local setup
 
