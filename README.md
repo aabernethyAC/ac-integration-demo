@@ -1,4 +1,4 @@
-# ACDemoIntegration
+# ac-integration-demo
 
 ActiveCampaign integration demo — small workspace for experimenting with the [ActiveCampaign](https://www.activecampaign.com/) API and related integrations.
 
@@ -29,12 +29,12 @@ git config user.email "you@example.com"
 
 ## GitHub: first-time push
 
-Remote is already set to **aabernethyAC / ACDemoIntegration**:
+Remote is set to **aabernethyAC / ac-integration-demo**:
 
-- HTTPS: `https://github.com/aabernethyAC/ACDemoIntegration.git`
-- SSH: `git@github.com:aabernethyAC/ACDemoIntegration.git`
+- HTTPS: `https://github.com/aabernethyAC/ac-integration-demo.git`
+- SSH: `git@github.com:aabernethyAC/ac-integration-demo.git`
 
-**On GitHub:** create the repository **ACDemoIntegration** under **aabernethyAC** if it does not exist. Use an **empty** repo (no README, no `.gitignore`, no license) so your first push matches.
+**On GitHub:** create the repository **ac-integration-demo** under **aabernethyAC** if it does not exist. Use an **empty** repo (no README, no `.gitignore`, no license) so your first push matches.
 
 **Authenticate before pushing** (pick one):
 
@@ -43,7 +43,7 @@ Remote is already set to **aabernethyAC / ACDemoIntegration**:
 3. **SSH in Terminal** — [Add an SSH key to GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh), then:
 
    ```bash
-   git remote set-url origin git@github.com:aabernethyAC/ACDemoIntegration.git
+   git remote set-url origin git@github.com:aabernethyAC/ac-integration-demo.git
    git push -u origin main
    ```
 
@@ -58,4 +58,3 @@ Later updates: `git push`.
 ## Security
 
 Never commit API keys or `.env`. This repo’s `.gitignore` excludes them by design.
-# ACDemoIntegration
