@@ -1,60 +1,60 @@
-# ac-integration-demo
+# ActiveCampaign Deep Data — Glass Outlet
 
-ActiveCampaign integration demo — small workspace for experimenting with the [ActiveCampaign](https://www.activecampaign.com/) API and related integrations.
+Demo that wires [Glass Outlet](https://www.glassoutlet.com.au/) into ActiveCampaign via the v3 Deep Data (e-commerce) APIs.
 
-## Local setup
+## What it does
 
-1. Copy environment template and add your credentials (keep `.env` out of Git):
+1. **Connection** — creates (or reuses) an e-commerce connection for `glassoutlet.com.au`
+2. **Customer** — creates or updates an ecom customer for contact `1203`
+3. **Orders** — posts:
+   - an **abandoned cart** (`externalcheckoutid` + `abandonedDate`, no `externalid`)
+   - a **completed order** (with `externalid`, `source: 1` so automations can fire)
 
-   ```bash
-   cp .env.example .env
-   ```
+## Setup
 
-2. Edit `.env` with your API URL and key from ActiveCampaign (**Settings → Developer → API**).
-
-## Git: save work
-
-```bash
-git status
-git add -A
-git commit -m "Describe your change"
-```
-
-Update commit identity for this repo only if needed:
+1. Copy env and add your ActiveCampaign credentials:
 
 ```bash
-git config user.name "Your Name"
-git config user.email "you@example.com"
+cp .env.example .env
 ```
 
-## GitHub: first-time push
+Fill in:
 
-Remote is set to **aabernethyAC / ac-integration-demo**:
+| Variable | Where to find it |
+|---|---|
+| `AC_API_URL` | Settings → Developer → URL (e.g. `https://youraccount.api-us1.com`) |
+| `AC_API_TOKEN` | Settings → Developer → Key |
+| `AC_ACTID` | Website → Site Tracking → Event Tracking API |
+| `AC_EVENT_KEY` | Website → Site Tracking → Event Tracking |
 
-- HTTPS: `https://github.com/aabernethyAC/ac-integration-demo.git`
-- SSH: `git@github.com:aabernethyAC/ac-integration-demo.git`
-
-**On GitHub:** create the repository **ac-integration-demo** under **aabernethyAC** if it does not exist. Use an **empty** repo (no README, no `.gitignore`, no license) so your first push matches.
-
-**Authenticate before pushing** (pick one):
-
-1. **Cursor** — Use **Source Control** and click **Publish Branch** / **Push**. Cursor can sign in to GitHub for you; that avoids terminal credential errors.
-2. **HTTPS in Terminal** — Use a [Personal Access Token](https://github.com/settings/tokens) when Git asks for a password (not your GitHub account password). Install [Git Credential Manager](https://github.com/git-ecosystem/git-credential-manager) if you want tokens saved.
-3. **SSH in Terminal** — [Add an SSH key to GitHub](https://docs.github.com/en/authentication/connecting-to-github-with-ssh), then:
-
-   ```bash
-   git remote set-url origin git@github.com:aabernethyAC/ac-integration-demo.git
-   git push -u origin main
-   ```
-
-**Push (after GitHub auth works):**
+2. Run (Node 18+, no install needed):
 
 ```bash
-git push -u origin main
+npm run sync
 ```
 
-Later updates: `git push`.
+## Custom Objects (Quote + Order)
 
-## Security
+High-level examples of syncing custom ERP/commerce data into Custom Objects related to a contact:
 
-Never commit API keys or `.env`. This repo’s `.gitignore` excludes them by design.
+```bash
+npm run sync:custom-objects
+```
+
+This updates existing schemas (`enquiry` → **Quote**, `purchase` → **Order**) and upserts sample records for contact `1203`.
+
+## Aeon.co (events + message variables)
+
+Posts subscriber-behavior events for a demo contact and creates HTML article message variables:
+
+```bash
+npm run sync:aeon
+```
+
+## Notes
+
+- Deep Data order prices are in **cents** (AUD); Custom Object currency fields use decimal amounts.
+- `source: 1` marks Deep Data events as real-time so Abandoned Cart / Makes a Purchase automations can trigger.
+- Re-running `sync` reuses the connection and updates the customer; it creates new cart/order IDs each time.
+- Re-running `sync:custom-objects` upserts the same Quote/Order records via `externalId`.
+- Never commit `.env` (API keys / event keys).

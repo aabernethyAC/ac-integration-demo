@@ -1,0 +1,15 @@
+{
+  "name": "ac-integration-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "ActiveCampaign Deep Data integration demo for Glass Outlet",
+  "scripts": {
+    "sync": "node src/deep-data-sync.js",
+    "sync:custom-objects": "node src/custom-objects-sync.js",
+    "sync:aeon": "node src/aeon-sync.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
