@@ -7,7 +7,12 @@
   "scripts": {
     "sync": "node src/deep-data-sync.js",
     "sync:custom-objects": "node src/custom-objects-sync.js",
-    "sync:aeon": "node src/aeon-sync.js"
+    "sync:code-camp": "node src/code-camp-sync.js",
+    "sync:university-alumni": "node src/university-alumni-sync.js",
+    "sync:union-signup": "node src/union-signup-sync.js",
+    "seed:union-contact": "node src/union-signup/seed-contact.js",
+    "sync:aeon": "node src/aeon-sync.js",
+    "test": "node --test test/**/*.test.js"
   },
   "engines": {
     "node": ">=18"
