@@ -107,6 +107,35 @@ Re-running is safe: existing schemas are updated (fields/options merged); record
 npm test
 ```
 
+## Loan Inquiries (Custom Object)
+
+Contact-level **Loan Inquiry** Custom Object for the Solutions English demo account (`.env.englishdemo`):
+
+| Object | Slug | Purpose |
+|---|---|---|
+| Loan Inquiry | `loan-inquiry` | One record per lending inquiry / application interest |
+
+Demo seeding always includes contact [`5226`](https://update-solutionsenglish.activehosted.com/app/contacts/5226) plus nine other contacts from the account (11 sample records total — two on the anchor contact).
+
+### Setup
+
+| Variable | Required | Notes |
+|---|---|---|
+| `AC_API_URL` | Yes (apply) | Solutions English API URL |
+| `AC_API_TOKEN` | Yes (apply) | API token |
+| `AC_ENV_FILE` | No | Defaults to `.env.englishdemo` for this script |
+| `AC_APPLY` | No | Set `1` (or pass `--apply`) to write to AC |
+
+```bash
+# Dry-run
+AC_ENV_FILE=.env.englishdemo npm run sync:loan-inquiries
+
+# Create/update schema + upsert demo records
+AC_ENV_FILE=.env.englishdemo NODE_TLS_REJECT_UNAUTHORIZED=0 npm run sync:loan-inquiries -- --apply
+```
+
+**Order:** ensure schema by slug → resolve 10 contacts (5226 first) → upsert records by `externalId`.
+
 ## Union sign-up (contact custom fields)
 
 Provisions contact custom fields for a multi-step Union membership form in **ACHQglobal** (`.env.achqglobal`):
