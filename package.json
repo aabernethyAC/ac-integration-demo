@@ -9,6 +9,7 @@
     "sync:custom-objects": "node src/custom-objects-sync.js",
     "sync:code-camp": "node src/code-camp-sync.js",
     "sync:university-alumni": "node src/university-alumni-sync.js",
+    "sync:loan-inquiries": "node src/loan-inquiries-sync.js",
     "sync:union-signup": "node src/union-signup-sync.js",
     "seed:union-contact": "node src/union-signup/seed-contact.js",
     "sync:aeon": "node src/aeon-sync.js",
